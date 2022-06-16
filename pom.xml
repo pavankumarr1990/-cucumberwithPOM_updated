@@ -28,12 +28,10 @@
                     <suiteXmlFiles>
                         <suiteXmlFile>src/test/resources/testNG_XML/google.xml</suiteXmlFile>
                     </suiteXmlFiles>
-<!--                    <testFailureIgnore>true</testFailureIgnore>-->
-<!--                    <shutdown>kill</shutdown>-->
+                    <!--                    <testFailureIgnore>true</testFailureIgnore>-->
+                    <!--                    <shutdown>kill</shutdown>-->
                 </configuration>
             </plugin>
-
-
             <!--  Latest Cucumber JVM Reports Plugin -->
             <plugin>
                 <groupId>net.masterthought</groupId>
