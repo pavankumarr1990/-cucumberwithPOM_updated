@@ -23,20 +23,16 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.18.1</version>
+                <version>2.20</version>
                 <configuration>
-                                        <suiteXmlFiles>
-                                            <suiteXmlFile>src/test/java/runner/google.xml</suiteXmlFile>
-                                    </suiteXmlFiles>
-                    <testFailureIgnore>true</testFailureIgnore>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>src/test/resources/testNG_XML/google.xml</suiteXmlFile>
+                    </suiteXmlFiles>
+<!--                    <testFailureIgnore>true</testFailureIgnore>-->
+<!--                    <shutdown>kill</shutdown>-->
                 </configuration>
             </plugin>
 
-            <!--            <plugin>-->
-            <!--                <groupId>org.apache.maven.plugins</groupId>-->
-            <!--                <artifactId>maven-failsafe-plugin</artifactId>-->
-            <!--                <version>2.22.2</version>-->
-            <!--            </plugin>-->
 
             <!--  Latest Cucumber JVM Reports Plugin -->
             <plugin>
@@ -54,7 +50,7 @@
                             <projectName>CucumberBDD2</projectName>
                             <!--  Replace with project name  -->
                             <outputDirectory>target/cucumber-reports/advanced-reports</outputDirectory>
-<!--                            <cucumberOutput>target/cucumber-reports/cucumber.json</cucumberOutput>-->
+                            <!--                            <cucumberOutput>target/cucumber-reports/cucumber.json</cucumberOutput>-->
                             <buildNumber>1</buildNumber>
                             <!--                            <parallelTesting>false</parallelTesting>-->
                             <skip>false</skip>
@@ -74,10 +70,11 @@
         </plugins>
     </build>
 
-    <!--    <properties>-->
-    <!--        <maven.compiler.source>18</maven.compiler.source>-->
-    <!--        <maven.compiler.target>18</maven.compiler.target>-->
-    <!--    </properties>-->
+    <properties>
+        <maven.compiler.source>18</maven.compiler.source>
+        <maven.compiler.target>18</maven.compiler.target>
+
+    </properties>
 
     <dependencies>
         <dependency>
@@ -198,6 +195,12 @@
             <groupId>net.masterthought</groupId>
             <artifactId>cucumber-reporting</artifactId>
             <version>5.7.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.20</version>
         </dependency>
     </dependencies>
 </project>
