@@ -1,6 +1,7 @@
 package stepDef;
 
 import common.SeleniumDriver;
+import common.Utilities;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.By;
@@ -16,7 +17,7 @@ public class google {
 //    {
 //        this.driver=getDriver();
 //    }
-
+Utilities utilities=new Utilities(getDriver());
     @Given("^Open browser and navigate to \"([^\"]*)\"$")
     public void open_browser_and_navigate_to_something(String strArg1) throws Throwable {
         SeleniumDriver.openPage(strArg1);
