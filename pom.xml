@@ -27,6 +27,7 @@
                 <configuration>
                     <suiteXmlFiles>
                         <suiteXmlFile>src/test/resources/testNG_XML/google.xml</suiteXmlFile>
+<!--                        <suiteXmlFile>${testngfile}</suiteXmlFile>-->
                     </suiteXmlFiles>
                     <!--                    <testFailureIgnore>true</testFailureIgnore>-->
                     <!--                    <shutdown>kill</shutdown>-->
