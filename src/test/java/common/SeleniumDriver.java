@@ -3,23 +3,27 @@ package common;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
 
 public class SeleniumDriver {
-    private static SeleniumDriver seleniumDriver;
-
+    public static SeleniumDriver seleniumDriver;
     //initialize webdriver
-    private static WebDriver driver;
-
+    public static WebDriver driver;
     //initialize timeouts
-    private static WebDriverWait waitDriver;
+    public static WebDriverWait waitDriver;
     public final static int TIMEOUT = 30;
     public final static int PAGE_LOAD_TIMEOUT = 50;
 
-    private  SeleniumDriver() {
+//    public SeleniumDriver(WebDriver driver)
+//    {
+//        this.driver=driver;
+//        PageFactory.initElements(driver,this);
+//    }
+    public  SeleniumDriver() {
 
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
