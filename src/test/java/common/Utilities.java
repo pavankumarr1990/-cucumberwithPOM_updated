@@ -1,14 +1,6 @@
 package common;
 
-import com.google.common.collect.Table;
-import common.SeleniumDriver;
 
-import org.apache.commons.lang3.StringUtils;
-import org.apache.poi.ss.usermodel.Sheet;
-
-import jxl.Cell;
-import jxl.Workbook;
-import jxl.WorkbookSettings;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.openqa.selenium.*;
@@ -18,7 +10,6 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.Reader;
@@ -26,22 +17,19 @@ import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.*;
 
-
 import static common.SeleniumDriver.TIMEOUT;
 import static common.SeleniumDriver.getDriver;
 
-public class Utilities{
-
+public class Utilities {
     WebDriver driver;
     public Utilities(WebDriver driver)
     {
-       this.driver=getDriver();
+        this.driver=getDriver();
     }
 
 
     JavascriptExecutor executor = (JavascriptExecutor) getDriver();
-    public static Map<Object, Object> sharedData = new HashMap<Object, Object>();
-    public static Map<String, Object> data = new HashMap<>();
+
     public int normalWaitTime = 120;
 
 
@@ -94,11 +82,10 @@ public class Utilities{
         //getDriver().findElement(locator).waitForVisible(timeOutInSeconds*1000);
     }
 
-    public void waitUntilElementVisible_iPad(By locator, int timeOutInSeconds) {
-        new WebDriverWait(getDriver(), Duration.ofSeconds(timeOutInSeconds)).until(ExpectedConditions.visibilityOfElementLocated(locator));
+    public void waitUntilElementVisiblePavan(WebElement webElement, int timeOutInSeconds) {
+        new WebDriverWait(getDriver(), Duration.ofSeconds(timeOutInSeconds)).until(ExpectedConditions.visibilityOfElementLocated((By) webElement));
         //getDriver().findElement(locator).waitForVisible(timeOutInSeconds*1000);
     }
-
     public void clickElement(WebElement webElement) throws InterruptedException {
         webElement.wait(normalWaitTime * 1000);
         if (!driverClick(webElement)) {
@@ -172,14 +159,7 @@ public class Utilities{
         }
     }
 
-    public boolean checkVisibilityWithWait_iPad(By locator, int timeOutInSeconds) {
-        try {
-            waitUntilElementVisible_iPad(locator, timeOutInSeconds);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
+
 
 
     public boolean checkPresence(WebElement webElement) {
@@ -618,89 +598,6 @@ public class Utilities{
 //            }
 //        }
 //
-//    }
-
-    public String[] getSheetNames() {
-        String[] sheetName = null;
-        Workbook workbook = null;
-        String folderSep = System.getProperty("file.separator");
-        String filePath = System.getProperty("user.dir") + folderSep + "src" + folderSep + "main" +
-                folderSep + "resources" + folderSep + "data" + folderSep + "testData.xls";
-        try {
-            File f = new File(filePath);
-            if (f.exists() && f.canRead()) {
-                workbook = Workbook.getWorkbook(f);
-                sheetName = workbook.getSheetNames();
-
-            }
-            return sheetName;
-        } catch (Exception e) {
-            System.out.println("Opening Excel Data file is not successful");
-            return sheetName;
-        } finally {
-            if (workbook != null)
-                workbook.close();
-        }
-
-    }
-//    public static Map<String, Object> getTableDataAsMap(String xlFilePath, String tableName, String sheetName) {
-//        Workbook workbook = null;
-//        Map<String, Object> map = null;
-//        WorkbookSettings ws = new WorkbookSettings();
-//        ws.setEncoding("Cp1252");
-//
-//        try {
-//            File f = new File(xlFilePath);
-//            if (f.exists() && f.canRead()) {
-//                workbook = Workbook.getWorkbook(f, ws);
-//                Sheet sheet = StringUtils.isNotBlank(sheetName) ? workbook.getSheet(sheetName) : workbook.getSheet(0);
-//                if (sheet == null) {
-//                    throw new RuntimeException("Worksheet " + sheetName + " not found in " + f.getAbsolutePath());
-//                }
-//
-//                Table.Cell tableStart = sheet.findCell(tableName);
-//                if (tableStart != null) {
-//                    int startRow = tableStart.getRow();
-//                    int startCol = tableStart.getColumn();
-//                    Cell tableEnd = sheet.findCell(tableName, startCol + 1, startRow + 1, 100, 64000, false);
-//                    if (tableEnd == null) {
-//                        throw new RuntimeException("Table " + tableName + " for ending data range not found in sheet " + sheet.getName());
-//                    }
-//
-//                    int endRow = tableEnd.getRow();
-//                    int endCol = tableEnd.getColumn();
-//                    String[] colNames = new String[endCol - startCol - 1];
-//
-//                    for (int i = startRow; i <= endRow; ++i) {
-//                        int cj = 0;
-//                        if (i == startRow) {
-//                            for (int j = startCol + 1; j < endCol; ++cj) {
-//                                colNames[cj] = sheet.getCell(j, i).getContents().trim();
-//                                ++j;
-//                            }
-//                        } else {
-//                            map = new HashMap<>();
-//
-//                            for (int j = startCol + 1; j < endCol; ++cj) {
-//                                map.put(colNames[cj], StringUtil.toObject(sheet.getCell(j, i).getContents().trim()));
-//                                ++j;
-//                            }
-//                        }
-//                    }
-//                }
-//                return map;
-//            }
-//        } catch (Exception var27) {
-//            throw new DataProviderException("Error while fetching data from " + xlFilePath, var27);
-//        } finally {
-//            try {
-//                if (workbook != null)
-//                    workbook.close();
-//            } catch (Exception var26) {
-//                System.out.println("Unable to close the Excel Workbook");
-//            }
-//            return map;
-//        }
 //    }
 
 }

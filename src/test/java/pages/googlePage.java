@@ -1,6 +1,7 @@
 package pages;
 
 import common.Utilities;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -24,8 +25,6 @@ public class googlePage {
     private WebElement type_googleSearch;
 
     public void googleSearch_Box() {
-//        type_googleSearch.sendKeys("Narashima swamy");
-//        utilities.waitUntilElementVisible(type_googleSearch, 30);
         utilities.typeStrValue(type_googleSearch, "Narashima swamy");
         System.out.println("Narashima swamy");
     }
